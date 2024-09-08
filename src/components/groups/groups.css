@@ -1,0 +1,86 @@
+/* Основен контейнер за груповата фаза */
+.group-stage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+    background-color: #2ecc71;
+    /* Зелен фон като футболно игрище */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Всяка група */
+.group {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.group:hover {
+    transform: scale(1.05);
+}
+
+/* Заглавието на всяка група */
+.group h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #27ae60;
+    /* Тъмнозелен цвят за заглавието */
+}
+
+/* Списъкът с отборите */
+.group ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.group li {
+    padding: 5px 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Стил за бутона */
+.group button {
+    background-color: #ffdf00;
+    /* Жълт бутон */
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.group button:hover {
+    background-color: #f39c12;
+    /* По-тъмен жълт при hover */
+    transform: scale(1.05);
+}
+
+.group button:active {
+    transform: scale(0.95);
+}
+
+/* Респонсивност */
+@media (max-width: 768px) {
+    .group-stage {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .group {
+        width: 100%;
+        max-width: 350px;
+    }
+}

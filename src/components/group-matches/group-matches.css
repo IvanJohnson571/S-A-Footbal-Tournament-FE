@@ -1,0 +1,117 @@
+/* Основен контейнер за списъка с мачове */
+.match-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    background-color: #2ecc71;
+    /* Зелен фон, като футболно игрище */
+}
+
+/* Карта за всеки мач */
+.match-card {
+    background-color: #f0f0f0;
+    border: 2px solid #27ae60;
+    /* Граница с по-тъмно зелено */
+    border-radius: 12px;
+    width: 300px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.match-card:hover {
+    transform: scale(1.05);
+}
+
+/* Информация за мача */
+.match-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Отбори и резултат */
+.teams {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.team {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.score {
+    font-size: 1.6rem;
+    font-weight: bold;
+    background-color: #27ae60;
+    /* Зелен фон за резултата */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+/* Допълнителна информация за мача */
+.match-meta {
+    font-size: 1rem;
+    color: #555;
+    text-align: center;
+}
+
+.winner {
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.draw {
+    font-weight: bold;
+    color: #e67e22;
+    /* Оранжево за равен мач */
+}
+
+.date {
+    font-style: italic;
+}
+
+/* Квалифицирали се отбори */
+.qualified-teams {
+    background-color: #2ecc71;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.qualified-teams h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.qualified-teams ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.qualified-teams li {
+    font-size: 1.3rem;
+    padding: 10px;
+    background-color: #27ae60;
+    color: white;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Респонсивен дизайн */
+@media (max-width: 768px) {
+    .match-card {
+        width: 100%;
+        max-width: 400px;
+    }
+}

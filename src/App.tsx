@@ -9,6 +9,8 @@ import Navigation from './components/navigation/navigation';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Matches from './components/matches/matches';
 import Records from './components/records/records';
+import Groups from './components/groups/groups';
+import GroupMatches from './components/group-matches/group-matches';
 
 
 
@@ -26,6 +28,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Matches />} />
         <Route path="/records" element={<Records />} />
+        <Route path="/groups" element={<Groups />} />
+        <Route path="/group-matches/:groupName" element={<GroupMatches />} />
       </Routes>
 
 

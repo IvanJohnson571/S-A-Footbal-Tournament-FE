@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import './Navigation.css'; // Стиловете ще са в този файл
+import './Navigation.css';
 import { Link } from 'react-router-dom';
 
 export const Navigation: React.FC = () => {
+
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -11,7 +12,7 @@ export const Navigation: React.FC = () => {
 
     return (
         <nav className="navbar">
-            <div className="navbar-logo">European Footbal Championship</div>
+            <div className="navbar-logo">European Football Championship</div>
             <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
                 <li><a href="/">TEAMS</a></li>
                 <li><Link to="/">MATCHES</Link></li>
@@ -19,6 +20,8 @@ export const Navigation: React.FC = () => {
                 <li><a href="/contact">PLAYERS</a></li>
             </ul>
             <div className="menu-toggle" onClick={toggleMenu}>
+                <div className="hamburger"></div>
+                <div className="hamburger"></div>
                 <div className="hamburger"></div>
             </div>
         </nav>

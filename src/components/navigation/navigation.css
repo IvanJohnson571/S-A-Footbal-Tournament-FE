@@ -1,42 +1,46 @@
-/* Основни стилове за навигацията */
+/* Основен стил за навигационната лента */
 .navbar {
+    background-color: #27ae60;
+    /* Зелен фон като тревата на футболно игрище */
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #153bdb;
-    color: white;
-    height: 100px;
-    width: 100%;
+    position: relative;
 }
 
 .navbar-logo {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
+    color: white;
+    font-family: 'Arial', sans-serif;
 }
 
+/* Стилове за навигационните връзки */
 .nav-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 20px;
     list-style: none;
-    margin-right: 2.5rem;
-}
-
-.nav-links li {
     margin: 0;
 }
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
+.nav-links li {
     font-size: 1.2rem;
 }
 
-.nav-links a:hover {
-    color: #f39c12;
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
-/* Стилове за менюто на мобилни устройства */
+.nav-links a:hover {
+    color: #ffdf00;
+    /* Жълт цвят при hover, като цветовете на купата */
+}
+
+/* Мобилна версия на менюто */
 .menu-toggle {
     display: none;
     cursor: pointer;
@@ -46,64 +50,37 @@
     width: 30px;
     height: 3px;
     background-color: white;
-    position: relative;
+    margin: 5px 0;
+    transition: all 0.3s ease;
 }
 
-.hamburger::before,
-.hamburger::after {
-    content: '';
-    width: 30px;
-    height: 3px;
-    background-color: white;
+/* Отваряне и затваряне на менюто */
+.nav-links.open {
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    transition: 0.3s ease;
+    top: 60px;
+    right: 20px;
+    background-color: #27ae60;
+    width: 200px;
+    padding: 15px;
+    border-radius: 8px;
 }
 
-.hamburger::before {
-    top: -8px;
+.nav-links.open li {
+    margin: 10px 0;
 }
 
-.hamburger::after {
-    top: 8px;
-}
-
-/* Скриване на менюто при мобилни устройства */
 @media (max-width: 768px) {
     .nav-links {
-        position: absolute;
-        top: 60px;
-        /* right: 0; */
-        height: calc(100vh - 60px);
-        width: 100%;
-        background-color: #153bdb;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-    }
-
-    .nav-links.open {
-        transform: translateX(0);
-        background-color: #153bdb;
+        display: none;
     }
 
     .menu-toggle {
         display: block;
     }
 
-    .hamburger.open {
-        background-color: transparent;
-    }
-
-    .hamburger.open::before {
-        transform: rotate(45deg);
-        top: 0;
-    }
-
-    .hamburger.open::after {
-        transform: rotate(-45deg);
-        top: 0;
+    .nav-links.open {
+        display: flex;
     }
 }

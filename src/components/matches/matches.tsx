@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './matches.css';
 import { useCsvData } from '../../services/CsvDataContext';
+import { Link } from 'react-router-dom';
+import Groups from '../groups/groups';
 
 interface Match {
     team1: string;
@@ -16,11 +18,19 @@ interface BracketProps {
 const Matches: React.FC<BracketProps> = () => {
 
     const { data } = useCsvData();
+    const [isViewA, setIsViewA] = useState(true);
+
     let matchesAfterGroups: any[] = [];
     let eightFinalsList: any[] = [];
     let forthFinalsList: any[] = [];
     let semiFinalsList: any[] = [];
     let finalsList: any[] = [];
+
+    function toggleView(state: boolean) {
+        setIsViewA(state); // Toggles the boolean value
+        console.log(isViewA);
+
+    };
 
     if (data.matches) {
 
@@ -138,78 +148,119 @@ const Matches: React.FC<BracketProps> = () => {
         sixteenFinalsList[7] = eightFinalsList[7];
     }
 
+    console.log('sixteenFinalsList: ', sixteenFinalsList);
+
     return (
-        <div className="wrapper">
-            <div className="bracket-container">
-                {sixteenFinalsList.map((round, roundIndex) => (
-                    <div className="round" key={roundIndex}>
+        <>
+            <div className="buttonsWrapper group">
+                <div>
+                    <button onClick={() => toggleView(false)}>
+                        View in groups
+                    </button>
+                </div>
 
-                        <div className="match" key={round.ID}>
-                            <div className="team">
-                                <span className="score">{round.ATeamName}</span>
-                            </div>
-                            <div className="team">
-                                <span className="score">{round.BTeamName}</span>
-                            </div>
-                            <div className="connector">
-                                <div className="line"></div>
-                            </div>
-                        </div>
+                <div>
+                    <button onClick={() => toggleView(true)}>
+                        View in finales
+                    </button>
+                </div>
+            </div>
 
-                        <div className="match">
-                            <div className="team"><span className="score">{round.WinnerName}</span>
-                            </div>
-                            <div className="connector">
-                                <div className="line"></div>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-            <div className="bracket-container space-around">
-                {forthFinalsList.map((round, roundIndex) => (
-                    <div className="round" key={roundIndex}>
-                        <div className="match" key={round.ID}>
-                            <div className="connector">
-                                <div className="line"></div>
-                            </div>
-                            <div className="team"><span className="score">{round.WinnerName}</span>
-                            </div>
-                            <div className="connector">
-                                <div className="line"></div>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-            <div className="bracket-container space-around">
-                {semiFinalsList.map((round, roundIndex) => (
-                    <div className="round" key={roundIndex}>
-                        <div className="match" key={round.ID}>
 
-                            <div className="team"><span className="score">{round.WinnerName}</span>
+            {!isViewA ? <div>
+                <Groups />
+            </div> :
+                <div className="wrapper">
+
+                    <div className="bracket-container">
+                        {sixteenFinalsList.map((round, roundIndex) => (
+                            <div className="round" key={roundIndex}>
+
+                                <div className="match" key={round.ID}>
+                                    <div className="team">
+                                        <span className="score">{round.ATeamName}</span>
+                                    </div>
+                                    <div className="team">
+                                        <span className="score">{round.BTeamName}</span>
+                                    </div>
+                                    <div className="connector">
+                                        <div className="line"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="connector">
-                                <div className="line"></div>
-                            </div>
-                        </div>
+                        ))}
                     </div>
-                ))}
-            </div>
-            <div className="bracket-container space-around">
-                {finalsList.map((round, roundIndex) => (
-                    <div className="round" key={roundIndex}>
-                        <div className="match" key={round.ID}>
-                            <div className="team"><span className="score">{round.WinnerName}</span>
+
+                    <div className="bracket-container space-around">
+                        {forthFinalsList.map((round, roundIndex) => (
+                            <div className="round" key={roundIndex}>
+
+                                <div className="match" key={round.ID}>
+                                    <div className="team">
+                                        <span className="score">{round.ATeamName}</span>
+                                    </div>
+                                    <div className="team">
+                                        <span className="score">{round.BTeamName}</span>
+                                    </div>
+                                    <div className="connector">
+                                        <div className="line"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="connector">
-                                <div className="line"></div>
-                            </div>
-                        </div>
+                        ))}
                     </div>
-                ))}
-            </div>
-        </div>
+
+                    <div className="bracket-container space-around">
+                        {semiFinalsList.map((round, roundIndex) => (
+                            <div className="round" key={roundIndex}>
+                                <div className="match" key={round.ID}>
+                                    <div className="team">
+                                        <span className="score">{round.ATeamName}</span>
+                                    </div>
+                                    <div className="team">
+                                        <span className="score">{round.BTeamName}</span>
+                                    </div>
+                                    <div className="connector">
+                                        <div className="line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="bracket-container space-around">
+                        {finalsList.map((round, roundIndex) => (
+                            <div className="round" key={roundIndex}>
+                                <div className="match" key={round.ID}>
+                                    <div className="team">
+                                        <span className="score">{round.ATeamName}</span>
+                                    </div>
+                                    <div className="team">
+                                        <span className="score">{round.BTeamName}</span>
+                                    </div>
+                                    <div className="connector">
+                                        <div className="line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="bracket-container space-around">
+                        {finalsList.map((round, roundIndex) => (
+                            <div className="round" key={roundIndex}>
+                                <div className="match" key={round.ID}>
+                                    <div className="team"><span className="score">{round.WinnerName}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            }
+
+
+
+        </>
+
     );
 };
 

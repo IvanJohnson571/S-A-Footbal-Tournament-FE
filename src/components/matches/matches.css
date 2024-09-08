@@ -19,7 +19,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        /* padding: 0 20px; */
         position: relative;
         width: fit-content;
         flex-direction: row;
@@ -28,6 +27,20 @@
     .match {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        background-color: #f4f4f4;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+        position: relative;
+        margin-right: 20px;
+    }
+
+    .match-two {
+        display: flex;
+        flex-direction: row;
         align-items: center;
         justify-content: space-between;
         padding: 10px;
@@ -50,7 +63,6 @@
         font-weight: bold;
     }
 
-    /* Линиите между мачовете */
     .connector {
         position: absolute;
         right: -20px;
@@ -66,26 +78,6 @@
         background-color: #333;
     }
 
-    .round:not(:last-child)::after {
-        content: '';
-        position: absolute;
-        right: 0;
-        top: 0;
-        height: 100%;
-        width: 2px;
-        background-color: #333;
-    }
-
-    .round:not(:first-child)::before {
-        /* content: '';
-        position: absolute;
-        left: -20px;
-        top: 50%;
-        width: 20px;
-        height: 2px;
-        background-color: #333; */
-    }
-
     .match:not(:last-child)::before {
         content: '';
         position: absolute;
@@ -93,6 +85,119 @@
         top: 50%;
         height: calc(100% + 30px);
         width: 2px;
-        /* background-color: #333; */
+    }
+}
+
+.buttonsWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 15px;
+    display: flex !important;
+    width: 100% !important;
+    flex-direction: row !important;
+    margin-bottom: 1em !important;
+}
+
+/* Стил за бутона */
+.group button {
+    background-color: #007bff;
+    /* Основен цвят на бутона (син) */
+    color: white;
+    /* Цвят на текста */
+    border: none;
+    /* Без граница */
+    border-radius: 8px;
+    /* Заоблени ъгли */
+    padding: 10px 20px;
+    /* Вътрешни отстояния */
+    font-size: 1rem;
+    /* Размер на текста */
+    cursor: pointer;
+    /* Показване на курсора при мишка */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    /* Анимация при hover */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    /* Лека сянка */
+}
+
+/* Ефект при задържане на мишката */
+.group button:hover {
+    background-color: #0056b3;
+    /* По-тъмен син при hover */
+    transform: scale(1.05);
+    /* Леко увеличение при hover */
+}
+
+/* При натискане (active) */
+.group button:active {
+    transform: scale(0.98);
+    /* Леко намаляване при натискане */
+}
+
+/* За мобилни устройства - бутонът ще заема 100% от ширината на контейнера */
+@media (max-width: 768px) {
+    .group button {
+        width: 100%;
+        /* Бутонът ще заема цялата ширина на контейнера */
+        font-size: 1.1rem;
+        /* Малко по-голям текст за мобилни устройства */
+    }
+}
+
+/* Стил за контейнера на бутоните */
+.buttonsWrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: #27ae60;
+    /* Зелен фон */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.buttonsWrapper div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Стил за бутоните */
+button {
+    background-color: #ffdf00;
+    /* Жълт фон за бутоните */
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #f39c12;
+    /* По-тъмен жълт при hover */
+    transform: scale(1.05);
+    /* Леко увеличение при hover */
+}
+
+button:active {
+    transform: scale(0.95);
+    /* Леко намаление при натискане */
+}
+
+/* Респонсивност за мобилни устройства */
+@media (max-width: 768px) {
+    .buttonsWrapper {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    button {
+        width: 100%;
     }
 }
