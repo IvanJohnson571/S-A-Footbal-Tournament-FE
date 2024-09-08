@@ -1,0 +1,109 @@
+/* Основни стилове за навигацията */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #153bdb;
+    color: white;
+    height: 100px;
+    width: 100%;
+}
+
+.navbar-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin-right: 2.5rem;
+}
+
+.nav-links li {
+    margin: 0;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.nav-links a:hover {
+    color: #f39c12;
+}
+
+/* Стилове за менюто на мобилни устройства */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    position: relative;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    position: absolute;
+    transition: 0.3s ease;
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    top: 8px;
+}
+
+/* Скриване на менюто при мобилни устройства */
+@media (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        top: 60px;
+        /* right: 0; */
+        height: calc(100vh - 60px);
+        width: 100%;
+        background-color: #153bdb;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    }
+
+    .nav-links.open {
+        transform: translateX(0);
+        background-color: #153bdb;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hamburger.open {
+        background-color: transparent;
+    }
+
+    .hamburger.open::before {
+        transform: rotate(45deg);
+        top: 0;
+    }
+
+    .hamburger.open::after {
+        transform: rotate(-45deg);
+        top: 0;
+    }
+}
