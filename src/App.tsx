@@ -25,13 +25,13 @@ function App() {
   const [matches, setMatches] = useState([]);
 
   const { data } = useCsvData();
-  console.log('All data: ', data);
+  //console.log('All data: ', data);
 
   useEffect(() => {
     const loadTeams = async () => {
       try {
         let data = await fetchTeams();
-        console.log('FROM THE DB TEAMS!!! ', data);
+        console.log('TEAMS!!! ', data);
 
         setTeams(data);  // Съхраняваме получените отбори в state
       } catch (err) {
@@ -46,8 +46,18 @@ function App() {
 
   const fetchMatches = async () => {
     try {
-      let data = await get('http://localhost:8080/api/matches'); // Подаваме маршрута за мачовете
-      console.log('FROM THE DB MATCHES!!! ', data);
+      let data = await get('api/matches'); // Подаваме маршрута за мачовете
+      console.log('MATCHES!!! ', data);
+      setMatches(data);
+    } catch (error) {
+      console.error('Error fetching matches:', error);
+    }
+  };
+
+  const getPlayers = async () => {
+    try {
+      let data = await get('api/players'); // Подаваме маршрута за мачовете
+      console.log('PLAYERS!!! ', data);
       setMatches(data);
     } catch (error) {
       console.error('Error fetching matches:', error);
@@ -56,6 +66,7 @@ function App() {
 
   useEffect(() => {
     fetchMatches();
+    getPlayers();
   }, []);
 
   return (

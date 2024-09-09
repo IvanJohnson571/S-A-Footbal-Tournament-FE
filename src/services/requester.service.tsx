@@ -1,3 +1,4 @@
+import { REACT_APP_API_URL } from "../constants";
 
 export const fetchMultipleCsvFiles = async (filePaths: string[]): Promise<{ [key: string]: string[][] }> => {
     try {
@@ -35,7 +36,7 @@ export const fetchMultipleCsvFiles = async (filePaths: string[]): Promise<{ [key
 
 export const get = async (endpoint: string) => {
     try {
-        const response = await fetch(endpoint); // Извикваме API с динамичен маршрут
+        const response = await fetch(REACT_APP_API_URL + endpoint); // Извикваме API с динамичен маршрут
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
