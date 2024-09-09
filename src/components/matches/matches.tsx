@@ -171,11 +171,9 @@ const Matches: React.FC<BracketProps> = () => {
                 <Groups />
             </div> :
                 <div className="wrapper">
-
                     <div className="bracket-container">
                         {sixteenFinalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-
                                 <div className="match" key={round.ID}>
                                     <div className="team">
                                         <span className="score">{round.ATeamName}</span>
@@ -183,9 +181,7 @@ const Matches: React.FC<BracketProps> = () => {
                                     <div className="team">
                                         <span className="score">{round.BTeamName}</span>
                                     </div>
-                                    <div className="connector">
-                                        <div className="line"></div>
-                                    </div>
+                                    <div className="connector"></div>
                                 </div>
                             </div>
                         ))}
@@ -194,7 +190,6 @@ const Matches: React.FC<BracketProps> = () => {
                     <div className="bracket-container space-around">
                         {forthFinalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-
                                 <div className="match" key={round.ID}>
                                     <div className="team">
                                         <span className="score">{round.ATeamName}</span>
@@ -202,9 +197,7 @@ const Matches: React.FC<BracketProps> = () => {
                                     <div className="team">
                                         <span className="score">{round.BTeamName}</span>
                                     </div>
-                                    <div className="connector">
-                                        <div className="line"></div>
-                                    </div>
+                                    <div className="connector"></div>
                                 </div>
                             </div>
                         ))}
@@ -220,13 +213,12 @@ const Matches: React.FC<BracketProps> = () => {
                                     <div className="team">
                                         <span className="score">{round.BTeamName}</span>
                                     </div>
-                                    <div className="connector">
-                                        <div className="line"></div>
-                                    </div>
+                                    <div className="connector"></div>
                                 </div>
                             </div>
                         ))}
                     </div>
+
                     <div className="bracket-container space-around">
                         {finalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
@@ -237,24 +229,25 @@ const Matches: React.FC<BracketProps> = () => {
                                     <div className="team">
                                         <span className="score">{round.BTeamName}</span>
                                     </div>
-                                    <div className="connector">
-                                        <div className="line"></div>
-                                    </div>
+                                    <div className="connector"></div>
                                 </div>
                             </div>
                         ))}
                     </div>
+
                     <div className="bracket-container space-around">
                         {finalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
                                 <div className="match" key={round.ID}>
-                                    <div className="team"><span className="score">{round.WinnerName}</span>
+                                    <div className="team">
+                                        <span className="score">{round.WinnerName}</span>
                                     </div>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
+
             }
 
 

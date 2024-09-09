@@ -33,3 +33,16 @@ export const fetchMultipleCsvFiles = async (filePaths: string[]): Promise<{ [key
 
 };
 
+export const get = async (endpoint: string) => {
+    try {
+        const response = await fetch(endpoint); // Извикваме API с динамичен маршрут
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+};
