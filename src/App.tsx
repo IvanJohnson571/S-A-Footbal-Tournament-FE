@@ -57,8 +57,18 @@ function App() {
 
   const getPlayers = async () => {
     try {
-      let data = await get('api/players'); // Подаваме маршрута за мачовете
+      let data = await get('api/players');
       console.log('PLAYERS!!! ', data);
+      setMatches(data);
+    } catch (error) {
+      console.error('Error fetching matches:', error);
+    }
+  };
+
+  const getRecords = async () => {
+    try {
+      let data = await get('api/records');
+      console.log('RECORDS!!! ', data);
       setMatches(data);
     } catch (error) {
       console.error('Error fetching matches:', error);
@@ -67,7 +77,8 @@ function App() {
 
   useEffect(() => {
     fetchMatches();
-    getPlayers();
+    //getPlayers();
+    //getRecords();
   }, []);
 
   return (

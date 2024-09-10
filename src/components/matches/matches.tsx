@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './matches.css';
 import { useCsvData } from '../../services/CsvDataContext';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,7 @@ import BracketsOne from '../brackets-view/brackets-one';
 import BracketsTwo from '../brackets-view/brackets-two';
 import BracketsThree from '../brackets-view/brackets-three';
 import trophy from '../../assets/trophy.png'
+import { get } from '../../services/requester.service';
 
 interface Match {
     team1: string;
@@ -35,6 +36,23 @@ const Matches: React.FC<BracketProps> = () => {
         console.log(isViewA);
 
     };
+
+    const [finalsData, setMatches] = useState([]);
+
+    const getFinals = async () => {
+        try {
+            let data = await get('api/finals');
+            console.log('FINALS УРААА!!! ', data);
+            setMatches(data);
+        } catch (error) {
+            console.error('Error fetching matches:', error);
+        }
+    };
+
+    useEffect(() => {
+        getFinals();
+
+    }, []);
 
     if (data.matches) {
 
