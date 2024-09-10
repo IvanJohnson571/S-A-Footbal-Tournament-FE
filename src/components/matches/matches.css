@@ -13,6 +13,10 @@
         justify-content: space-between;
         margin: 20px;
         flex-direction: column;
+        margin-top: 20px;
+        margin-right: 0px;
+        margin-bottom: 20px;
+        margin-left: 20px;
     }
 
     .round {
@@ -29,13 +33,13 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        padding: 10px;
+        padding: 0px;
         background-color: #f4f4f4;
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         margin-bottom: 30px;
         position: relative;
-        margin-right: 20px;
+        /* margin-right: 20px; */
     }
 
     .match-two {
@@ -55,12 +59,8 @@
     .team {
         display: flex;
         justify-content: space-between;
-        width: 150px;
+        /* width: 150px; */
         padding: 5px 10px;
-    }
-
-    .score {
-        font-weight: bold;
     }
 
     .connector {
@@ -70,12 +70,6 @@
         transform: translateY(-50%);
         height: 2px;
         width: 20px;
-    }
-
-    .connector .line {
-        width: 100%;
-        height: 2px;
-        background-color: #333;
     }
 
     .match:not(:last-child)::before {
@@ -94,65 +88,45 @@
     justify-content: space-around;
     padding: 15px;
     display: flex !important;
-    width: 100% !important;
+    width: 98% !important;
     flex-direction: row !important;
     margin-bottom: 1em !important;
 }
 
-/* Стил за бутона */
 .group button {
     background-color: #007bff;
-    /* Основен цвят на бутона (син) */
     color: white;
-    /* Цвят на текста */
     border: none;
-    /* Без граница */
     border-radius: 8px;
-    /* Заоблени ъгли */
     padding: 10px 20px;
-    /* Вътрешни отстояния */
     font-size: 1rem;
-    /* Размер на текста */
     cursor: pointer;
-    /* Показване на курсора при мишка */
     transition: background-color 0.3s ease, transform 0.2s ease;
-    /* Анимация при hover */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    /* Лека сянка */
 }
 
-/* Ефект при задържане на мишката */
 .group button:hover {
     background-color: #0056b3;
-    /* По-тъмен син при hover */
     transform: scale(1.05);
-    /* Леко увеличение при hover */
 }
 
-/* При натискане (active) */
 .group button:active {
     transform: scale(0.98);
-    /* Леко намаляване при натискане */
 }
 
-/* За мобилни устройства - бутонът ще заема 100% от ширината на контейнера */
 @media (max-width: 768px) {
     .group button {
         width: 100%;
-        /* Бутонът ще заема цялата ширина на контейнера */
         font-size: 1.1rem;
-        /* Малко по-голям текст за мобилни устройства */
     }
 }
 
-/* Стил за контейнера на бутоните */
 .buttonsWrapper {
     display: flex;
     justify-content: center;
     gap: 20px;
     padding: 20px;
     background-color: #27ae60;
-    /* Зелен фон */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
@@ -164,10 +138,8 @@
     align-items: center;
 }
 
-/* Стил за бутоните */
 button {
     background-color: #ffdf00;
-    /* Жълт фон за бутоните */
     color: #fff;
     font-size: 1.2rem;
     font-weight: bold;
@@ -180,17 +152,13 @@ button {
 
 button:hover {
     background-color: #f39c12;
-    /* По-тъмен жълт при hover */
     transform: scale(1.05);
-    /* Леко увеличение при hover */
 }
 
 button:active {
     transform: scale(0.95);
-    /* Леко намаление при натискане */
 }
 
-/* Респонсивност за мобилни устройства */
 @media (max-width: 768px) {
     .buttonsWrapper {
         flex-direction: column;
@@ -204,14 +172,7 @@ button:active {
 
 .wrapper {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 20px;
-    overflow-x: auto;
-    /* Добавяме хоризонтален скрол, ако е нужно */
     background-color: #2ecc71;
-    /* Зелен фон */
 }
 
 .bracket-container {
@@ -225,7 +186,12 @@ button:active {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    transition-duration: .3s;
+    transition-property: min-height, max-height;
+    transition-timing-function: ease-in-out;
+    max-height: 100px;
+    min-height: 96px;
+    width: 160px;
 }
 
 .match {
@@ -233,7 +199,7 @@ button:active {
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
-    padding: 10px 20px;
+    padding: 0px;
     border-radius: 8px;
     width: 250px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -241,14 +207,25 @@ button:active {
 }
 
 .team {
-    font-size: 1.1rem;
-    font-weight: bold;
+    font-size: 16px !important;
+    font-weight: 600 !important;
     color: #333;
 }
 
-/* Линии, които свързват мачовете */
 .connector {
     position: absolute;
     top: 50%;
     left: 100%;
-    hei
+}
+
+.winner-image {
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+}
+
+.matches-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: auto;
+}

@@ -13,6 +13,7 @@ import Groups from './components/groups/groups';
 import GroupMatches from './components/group-matches/group-matches';
 import { fetchTeams, Team } from './services/teamService';
 import { get } from './services/requester.service';
+import MatchPair from './components/match-pair/match-pair';
 
 
 
@@ -78,6 +79,7 @@ function App() {
         <Route path="/records" element={<Records />} />
         <Route path="/groups" element={<Groups />} />
         <Route path="/group-matches/:groupName" element={<GroupMatches />} />
+        <Route path="/match-pair/:id" element={<MatchPair />} />
       </Routes>
 
 

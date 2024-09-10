@@ -1,0 +1,84 @@
+/* FootballField.css */
+.football-field {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    /* background: url('../../assets/field.jpg') no-repeat center center; */
+    background-size: cover;
+    margin: 0 auto;
+    border: 2px solid white;
+    overflow: hidden;
+    transform: rotate(90deg);
+    top: 165px;
+}
+
+.player {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-weight: bold;
+}
+
+.field-wrap {
+    display: flex;
+    flex-direction: row;
+    /* Подрежда контейнерите един до друг по подразбиране */
+    justify-content: space-around;
+    width: 100%;
+}
+
+.field {
+    width: 45%;
+    /* Задаваме ширина на всеки контейнер, когато са един до друг */
+    height: 400px;
+    background-color: lightgreen;
+    border: 2px solid white;
+}
+
+@media (max-width: 768px) {
+    .field-wrap {
+        flex-direction: column;
+        /* Променяме на колона при по-малки екрани */
+    }
+
+    .field {
+        width: 100%;
+        /* Контейнерите заемат пълна ширина на малки екрани */
+        margin-bottom: 20px;
+        /* Добавяме разстояние между полетата */
+    }
+}
+
+.ground-image {
+    width: 800px;
+    height: 500px;
+    margin-top: 10px;
+    transform: rotate(90deg);
+    bottom: -156px;
+    position: relative;
+}
+
+.ground-image {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.ground-image img {
+    width: 100%;
+    height: auto;
+}
+
+.player {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 50%;
+    text-align: center;
+}

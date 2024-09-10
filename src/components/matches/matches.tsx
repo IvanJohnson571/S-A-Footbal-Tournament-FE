@@ -3,6 +3,10 @@ import './matches.css';
 import { useCsvData } from '../../services/CsvDataContext';
 import { Link } from 'react-router-dom';
 import Groups from '../groups/groups';
+import BracketsOne from '../brackets-view/brackets-one';
+import BracketsTwo from '../brackets-view/brackets-two';
+import BracketsThree from '../brackets-view/brackets-three';
+import trophy from '../../assets/trophy.png'
 
 interface Match {
     team1: string;
@@ -148,112 +152,116 @@ const Matches: React.FC<BracketProps> = () => {
         sixteenFinalsList[7] = eightFinalsList[7];
     }
 
+    const [isShrink, setShrink] = useState(false);
+
+    const handleShrink = () => {
+        setShrink(!isShrink);
+    };
+
     console.log('sixteenFinalsList: ', sixteenFinalsList);
 
     return (
-        <>
+        <><div className="matches-wrap">
             <div className="buttonsWrapper group">
                 <div>
                     <button onClick={() => toggleView(false)}>
                         View in groups
                     </button>
                 </div>
-
                 <div>
                     <button onClick={() => toggleView(true)}>
                         View in finales
                     </button>
                 </div>
             </div>
-
-
             {!isViewA ? <div>
                 <Groups />
             </div> :
-                <div className="wrapper">
+                <div className={`wrapper ${isShrink ? 'shrink' : ''}`}>
                     <div className="bracket-container">
                         {sixteenFinalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-                                <div className="match" key={round.ID}>
-                                    <div className="team">
-                                        <span className="score">{round.ATeamName}</span>
+                                <Link key={round.ID} to={`/match-pair/${round.ID}`}>
+                                    <div className="match" key={round.ID}>
+
+                                        <div className="team">
+                                            <span >{round.ATeamName}</span>
+                                        </div>
+                                        <div className="team">
+                                            <span >{round.BTeamName}</span>
+                                        </div>
                                     </div>
-                                    <div className="team">
-                                        <span className="score">{round.BTeamName}</span>
-                                    </div>
-                                    <div className="connector"></div>
-                                </div>
+                                </Link>
                             </div>
                         ))}
                     </div>
-
-                    <div className="bracket-container space-around">
+                    <BracketsOne />
+                    <div className="bracket-container space-around" style={{ marginLeft: '0px' }}>
                         {forthFinalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-                                <div className="match" key={round.ID}>
-                                    <div className="team">
-                                        <span className="score">{round.ATeamName}</span>
+                                <Link key={round.ID} to={`/match-pair/${round.ID}`}>
+                                    <div className="match" key={round.ID}>
+                                        <div className="team">
+                                            <span >{round.ATeamName}</span>
+                                        </div>
+                                        <div className="team">
+                                            <span >{round.BTeamName}</span>
+                                        </div>
                                     </div>
-                                    <div className="team">
-                                        <span className="score">{round.BTeamName}</span>
-                                    </div>
-                                    <div className="connector"></div>
-                                </div>
+                                </Link>
                             </div>
                         ))}
                     </div>
-
-                    <div className="bracket-container space-around">
+                    <BracketsTwo />
+                    <div className="bracket-container space-around" style={{ marginLeft: '0px' }}>
                         {semiFinalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-                                <div className="match" key={round.ID}>
-                                    <div className="team">
-                                        <span className="score">{round.ATeamName}</span>
+                                <Link key={round.ID} to={`/match-pair/${round.ID}`}>
+                                    <div className="match" key={round.ID}>
+                                        <div className="team">
+                                            <span >{round.ATeamName}</span>
+                                        </div>
+                                        <div className="team">
+                                            <span >{round.BTeamName}</span>
+                                        </div>
                                     </div>
-                                    <div className="team">
-                                        <span className="score">{round.BTeamName}</span>
-                                    </div>
-                                    <div className="connector"></div>
-                                </div>
+                                </Link>
                             </div>
                         ))}
                     </div>
-
+                    <BracketsThree />
                     <div className="bracket-container space-around">
                         {finalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-                                <div className="match" key={round.ID}>
-                                    <div className="team">
-                                        <span className="score">{round.ATeamName}</span>
+                                <Link key={round.ID} to={`/match-pair/${round.ID}`}>
+                                    <div className="match" key={round.ID}>
+                                        <div className="team">
+                                            <span >{round.ATeamName}</span>
+                                        </div>
+                                        <div className="team">
+                                            <span >{round.BTeamName}</span>
+                                        </div>
                                     </div>
-                                    <div className="team">
-                                        <span className="score">{round.BTeamName}</span>
-                                    </div>
-                                    <div className="connector"></div>
-                                </div>
+                                </Link>
                             </div>
                         ))}
                     </div>
-
                     <div className="bracket-container space-around">
                         {finalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-                                <div className="match" key={round.ID}>
+                                <div className="match" key={round.ID} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+                                    <img src={trophy} alt="Winner" className="winner-image" />
                                     <div className="team">
-                                        <span className="score">{round.WinnerName}</span>
+                                        <span>{round.WinnerName}</span>
                                     </div>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
-
             }
-
-
-
+        </div>
         </>
-
     );
 };
 

@@ -1,0 +1,33 @@
+/* LINES CONTENT */
+
+.line-wrapper {
+    height: 100%;
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.upper-Line {
+    height: 12.2%;
+    width: 30px;
+    border-bottom: 2px solid black;
+}
+
+.left-Line {
+    height: 12.2%;
+    width: 30px;
+    border-left: 2px solid black;
+}
+
+.first-Line {
+    height: 5.14%;
+    width: 30px;
+    border-bottom: 2px solid black;
+}
+
+.last-Line {}
+
+.all-lines-wrapp {
+    display: flex;
+    flex-direction: row;
+}
