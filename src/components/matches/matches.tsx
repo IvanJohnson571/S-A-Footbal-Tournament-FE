@@ -22,161 +22,65 @@ interface BracketProps {
 
 const Matches: React.FC<BracketProps> = () => {
 
-    const { data } = useCsvData();
     const [isViewA, setIsViewA] = useState(true);
-
-    let matchesAfterGroups: any[] = [];
-    let eightFinalsList: any[] = [];
-    let forthFinalsList: any[] = [];
-    let semiFinalsList: any[] = [];
-    let finalsList: any[] = [];
+    const [isShrink, setShrink] = useState(false);
+    const [eightFinalsList, setEightFinalsList] = useState<any[]>([]);
+    const [forthFinalsList, setForthFinalsList] = useState<any[]>([]);
+    const [semiFinalsList, setSemiFinalsList] = useState<any[]>([]);
+    const [finalsList, setFinalsList] = useState<any[]>([]);
+    const [sixteenFinalsList, setSixteenFinalsList] = useState<any[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     function toggleView(state: boolean) {
-        setIsViewA(state); // Toggles the boolean value
-        console.log(isViewA);
-
-    };
-
-    const [finalsData, setMatches] = useState([]);
+        setIsViewA(state);
+    }
 
     const getFinals = async () => {
         try {
             let data = await get('api/finals');
-            console.log('FINALS УРААА!!! ', data);
-            setMatches(data);
+            const finalsTeamsList = data;
+
+            const eightFinals = finalsTeamsList.SixteenFinals;
+            const forthFinals = finalsTeamsList.ForthFinals;
+            const semiFinals = finalsTeamsList.SemiFinals;
+            const finals = finalsTeamsList.Finals;
+
+            setEightFinalsList(eightFinals);
+            setForthFinalsList(forthFinals);
+            setSemiFinalsList(semiFinals);
+            setFinalsList(finals);
+
+            const sixteenFinals = [
+                eightFinals[3],
+                eightFinals[1],
+                eightFinals[5],
+                eightFinals[4],
+                eightFinals[2],
+                eightFinals[0],
+                eightFinals[6],
+                eightFinals[7]
+            ];
+
+            setSixteenFinalsList(sixteenFinals);
+
         } catch (error) {
             console.error('Error fetching matches:', error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
     useEffect(() => {
         getFinals();
-
     }, []);
 
-    if (data.matches) {
-
-        for (let i = 37; i < data.matches.length; i++) {
-
-            let score: any;
-            let ATeamName: string = '';
-            let BTeamName: string = '';
-            let WinnerName;
-            let WinnerID;
-
-            if (data.matches[i] && data.matches[i][4]) {
-                score = data.matches[i][4].split('\r');
-                score = score[0]
-
-            }
-
-            for (let k = 0; k < data.teams.length; k++) {
-
-                if (data.matches[i][1] == data.teams[k][0]) {
-                    ATeamName = data.teams[k][1];
-
-                }
-
-
-                if (data.matches[i][2] == data.teams[k][0]) {
-                    BTeamName = data.teams[k][1];
-                }
-
-            }
-
-            if (score) {
-                let tempScoreArr = score.split('-');
-                let tempScoreOne = tempScoreArr[0];
-                let tempScoreTwo = tempScoreArr[1];
-                let scoreInNumberA = Number(tempScoreOne);
-                let scoreInNumberB = Number(tempScoreTwo);
-
-                if (Number.isNaN(scoreInNumberA)) {
-
-                    let regex = /\((\d+)\)/;
-                    let matchOne = tempScoreOne.match(regex);
-                    let matchTwo = tempScoreTwo.match(regex);
-
-                    if (Number(matchOne[1]) > Number(matchTwo[1])) {
-                        WinnerName = ATeamName;
-                        WinnerID = data.matches[i][1];
-
-                    } else {
-                        WinnerName = BTeamName;
-                        WinnerID = data.matches[i][2];
-
-                    }
-
-                } else {
-
-                    if (scoreInNumberA > scoreInNumberB) {
-                        WinnerName = ATeamName;
-                        WinnerID = data.matches[i][1];
-
-                    } else {
-                        WinnerName = BTeamName;
-                        WinnerID = data.matches[i][2];
-
-                    }
-
-                }
-            }
-
-
-            let newObjectData = {
-                ID: data.matches[i][0],
-                ATeamID: data.matches[i][1],
-                ATeamName: ATeamName,
-                BTeamID: data.matches[i][2],
-                BTeamName: BTeamName,
-                Date: data.matches[i][3],
-                Score: score,
-                WinnerName: WinnerName,
-                WinnerID: WinnerID
-            }
-
-            if (i >= 37 && i <= 44) {
-                eightFinalsList.push(newObjectData);
-            }
-
-            if (i >= 45 && i <= 48) {
-                forthFinalsList.push(newObjectData);
-            }
-
-            if (i >= 49 && i <= 50) {
-                semiFinalsList.push(newObjectData);
-            }
-
-            if (i == 51) {
-                finalsList.push(newObjectData);
-            }
-
-            matchesAfterGroups.push(newObjectData);
-
-        }
-
+    if (isLoading) {
+        return <div>Loading finals data...</div>;
     }
-
-    let sixteenFinalsList: any[] = [];
-
-    if (eightFinalsList.length > 0) {
-        sixteenFinalsList[0] = eightFinalsList[3];
-        sixteenFinalsList[1] = eightFinalsList[1];
-        sixteenFinalsList[2] = eightFinalsList[5];
-        sixteenFinalsList[3] = eightFinalsList[4];
-        sixteenFinalsList[4] = eightFinalsList[2];
-        sixteenFinalsList[5] = eightFinalsList[0];
-        sixteenFinalsList[6] = eightFinalsList[6];
-        sixteenFinalsList[7] = eightFinalsList[7];
-    }
-
-    const [isShrink, setShrink] = useState(false);
 
     const handleShrink = () => {
         setShrink(!isShrink);
     };
-
-    console.log('sixteenFinalsList: ', sixteenFinalsList);
 
     return (
         <><div className="matches-wrap">
@@ -199,14 +103,14 @@ const Matches: React.FC<BracketProps> = () => {
                     <div className="bracket-container">
                         {sixteenFinalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-                                <Link key={round.ID} to={`/match-pair/${round.ID}`}>
-                                    <div className="match" key={round.ID}>
+                                <Link key={round.id} to={`/match-pair/${round.id}`}>
+                                    <div className="match" key={round.id}>
 
                                         <div className="team">
-                                            <span >{round.ATeamName}</span>
+                                            <span >{round.ateamName}</span>
                                         </div>
                                         <div className="team">
-                                            <span >{round.BTeamName}</span>
+                                            <span >{round.bteamName}</span>
                                         </div>
                                     </div>
                                 </Link>
@@ -217,13 +121,13 @@ const Matches: React.FC<BracketProps> = () => {
                     <div className="bracket-container space-around" style={{ marginLeft: '0px' }}>
                         {forthFinalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-                                <Link key={round.ID} to={`/match-pair/${round.ID}`}>
-                                    <div className="match" key={round.ID}>
+                                <Link key={round.id} to={`/match-pair/${round.id}`}>
+                                    <div className="match" key={round.id}>
                                         <div className="team">
-                                            <span >{round.ATeamName}</span>
+                                            <span >{round.ateamName}</span>
                                         </div>
                                         <div className="team">
-                                            <span >{round.BTeamName}</span>
+                                            <span >{round.bteamName}</span>
                                         </div>
                                     </div>
                                 </Link>
@@ -234,13 +138,13 @@ const Matches: React.FC<BracketProps> = () => {
                     <div className="bracket-container space-around" style={{ marginLeft: '0px' }}>
                         {semiFinalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-                                <Link key={round.ID} to={`/match-pair/${round.ID}`}>
-                                    <div className="match" key={round.ID}>
+                                <Link key={round.id} to={`/match-pair/${round.id}`}>
+                                    <div className="match" key={round.id}>
                                         <div className="team">
-                                            <span >{round.ATeamName}</span>
+                                            <span >{round.ateamName}</span>
                                         </div>
                                         <div className="team">
-                                            <span >{round.BTeamName}</span>
+                                            <span >{round.bteamName}</span>
                                         </div>
                                     </div>
                                 </Link>
@@ -251,13 +155,13 @@ const Matches: React.FC<BracketProps> = () => {
                     <div className="bracket-container space-around">
                         {finalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-                                <Link key={round.ID} to={`/match-pair/${round.ID}`}>
-                                    <div className="match" key={round.ID}>
+                                <Link key={round.id} to={`/match-pair/${round.id}`}>
+                                    <div className="match" key={round.id}>
                                         <div className="team">
-                                            <span >{round.ATeamName}</span>
+                                            <span >{round.ateamName}</span>
                                         </div>
                                         <div className="team">
-                                            <span >{round.BTeamName}</span>
+                                            <span >{round.bteamName}</span>
                                         </div>
                                     </div>
                                 </Link>
@@ -267,10 +171,10 @@ const Matches: React.FC<BracketProps> = () => {
                     <div className="bracket-container space-around">
                         {finalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-                                <div className="match" key={round.ID} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+                                <div className="match" key={round.id} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
                                     <img src={trophy} alt="Winner" className="winner-image" />
                                     <div className="team">
-                                        <span>{round.WinnerName}</span>
+                                        <span>{round.winnerName}</span>
                                     </div>
                                 </div>
                             </div>
