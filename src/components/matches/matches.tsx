@@ -8,6 +8,7 @@ import BracketsTwo from '../brackets-view/brackets-two';
 import BracketsThree from '../brackets-view/brackets-three';
 import trophy from '../../assets/trophy.png'
 import { get } from '../../services/requester.service';
+import { log } from 'console';
 
 interface Match {
     team1: string;
@@ -20,7 +21,7 @@ interface BracketProps {
     matches: Match[][];
 }
 
-const Matches: React.FC<BracketProps> = () => {
+const Matches: React.FC = () => {
 
     const [isViewA, setIsViewA] = useState(true);
     const [isShrink, setShrink] = useState(false);
@@ -39,7 +40,7 @@ const Matches: React.FC<BracketProps> = () => {
         try {
             let data = await get('api/finals');
             const finalsTeamsList = data;
-
+            console.log('finalsTeamsList: ', finalsTeamsList);
             const eightFinals = finalsTeamsList.SixteenFinals;
             const forthFinals = finalsTeamsList.ForthFinals;
             const semiFinals = finalsTeamsList.SemiFinals;
@@ -82,6 +83,7 @@ const Matches: React.FC<BracketProps> = () => {
         setShrink(!isShrink);
     };
 
+
     return (
         <><div className="matches-wrap">
             <div className="buttonsWrapper group">
@@ -103,7 +105,7 @@ const Matches: React.FC<BracketProps> = () => {
                     <div className="bracket-container">
                         {sixteenFinalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-                                <Link key={round.id} to={`/match-pair/${round.id}`}>
+                                <Link key={round.id} to={`/match-pair/${round.ateamId}/${round.bteamId}`}>
                                     <div className="match" key={round.id}>
 
                                         <div className="team">

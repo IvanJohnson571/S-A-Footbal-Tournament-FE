@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react'
+import { LoadingProvider, useLoading } from './components/loader/LoadingContext';
+import Loader from './components/loader/loader';
+import { useState, useEffect, createContext, useContext } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -14,8 +16,6 @@ import GroupMatches from './components/group-matches/group-matches';
 import { fetchTeams, Team } from './services/teamService';
 import { get } from './services/requester.service';
 import MatchPair from './components/match-pair/match-pair';
-
-
 
 function App() {
 
@@ -77,25 +77,40 @@ function App() {
 
   useEffect(() => {
     fetchMatches();
-    //getPlayers();
+    getPlayers();
     //getRecords();
   }, []);
 
   return (
     <>
+      <LoadingProvider>
+        <AppContent />
+      </LoadingProvider>
+    </>
+  )
+}
 
+import { MoonLoader } from 'react-spinners';
+
+const AppContent: React.FC = () => {
+  //const [isLoading, setLoading] = useState(true);
+  const { isLoading } = useLoading();
+
+
+
+  return (
+    <>
+      {isLoading && <MoonLoader />}
       <Navigation />
       <Routes>
         <Route path="/" element={<Matches />} />
         <Route path="/records" element={<Records />} />
         <Route path="/groups" element={<Groups />} />
         <Route path="/group-matches/:groupName" element={<GroupMatches />} />
-        <Route path="/match-pair/:id" element={<MatchPair />} />
+        <Route path="/match-pair/:teamAId/:teamBId" element={<MatchPair />} />
       </Routes>
-
-
     </>
-  )
-}
+  );
+};
 
 export default App

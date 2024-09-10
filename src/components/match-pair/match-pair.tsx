@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './match-pair.css';
 import playground from '../../assets/field.jpg'
+import { get } from '../../services/requester.service';
+import { useParams } from 'react-router-dom';
+import { log } from 'console';
 
 
 const players = [
@@ -17,8 +20,36 @@ const players = [
     { number: 11, position: { top: '70%', right: '40%' } },
 ];
 
-const MatchPair: React.FC = () => {
+interface Player {
+    id: number;
+    fullName: string;
+    position: string;
+    teamId: number;
+}
 
+const MatchPair: React.FC = () => {
+    const { teamAId, teamBId } = useParams<{ teamAId: string; teamBId: string }>();
+    const [teamAPlayers, setTeamAPlayers] = useState<Player[]>([]);
+    const [teamBPlayers, setTeamBPlayers] = useState<Player[]>([]);
+    const [matches, setMatches] = useState([]);
+
+    const getRecords = async () => {
+        try {
+            let data = await get(`api/players/teams/${teamAId}/${teamBId}`);
+            setTeamAPlayers(data.TeamAPlayers);
+            setTeamBPlayers(data.TeamBPlayers);
+            console.log('2 teams!!! ', data);
+            setMatches(data);
+        } catch (error) {
+            console.error('Error fetching matches:', error);
+        }
+    };
+
+    useEffect(() => {
+        if (teamAId && teamBId) {
+            getRecords();
+        }
+    }, [teamAId, teamBId]);
 
     return (
         <>
