@@ -8,10 +8,17 @@ export interface CsvDataContextType {
     loadData: () => void;
 }
 
-interface dataModel {
+export interface dataModel {
     matches: string[][];
     players: string[][];
     records: string[][];
     teams: string[][];
 
+}
+
+export interface Player {
+    id: number;
+    fullName: string;
+    position: string;
+    teamId: number;
 }

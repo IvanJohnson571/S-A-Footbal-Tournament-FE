@@ -2,43 +2,39 @@ import React, { useEffect, useState } from 'react';
 import './match-pair.css';
 import playground from '../../assets/field.jpg'
 import { get } from '../../services/requester.service';
-import { useParams } from 'react-router-dom';
-import { log } from 'console';
-
-
-const players = [
-    { number: 1, position: { top: '10%', left: '5%' } },
-    { number: 2, position: { top: '30%', left: '10%' } },
-    { number: 3, position: { top: '50%', left: '10%' } },
-    { number: 4, position: { top: '70%', left: '10%' } },
-    { number: 5, position: { top: '90%', left: '5%' } },
-    { number: 6, position: { top: '30%', left: '40%' } },
-    { number: 7, position: { top: '50%', left: '40%' } },
-    { number: 8, position: { top: '70%', left: '40%' } },
-    { number: 9, position: { top: '30%', right: '40%' } },
-    { number: 10, position: { top: '50%', right: '40%' } },
-    { number: 11, position: { top: '70%', right: '40%' } },
-];
-
-interface Player {
-    id: number;
-    fullName: string;
-    position: string;
-    teamId: number;
-}
+import { useLocation, useParams } from 'react-router-dom';
+import { fixedPositions, NamesStyles } from './constants';
+import { Player } from '../../interfaces/common';
+import { formatDate } from '../../services/dateFormats';
 
 const MatchPair: React.FC = () => {
+
     const { teamAId, teamBId } = useParams<{ teamAId: string; teamBId: string }>();
     const [teamAPlayers, setTeamAPlayers] = useState<Player[]>([]);
     const [teamBPlayers, setTeamBPlayers] = useState<Player[]>([]);
+    const [startingAPlayers, setStartingAPlayers] = useState<Player[]>([]);
+    const [startingBPlayers, setStartingBPlayers] = useState<Player[]>([]);
     const [matches, setMatches] = useState([]);
+    const location = useLocation();
+    const { roundData } = location.state;
+    console.log('roundData: ', roundData);
+    let teamAData: any[] = [];
+    let teamBData: any[] = [];
 
     const getRecords = async () => {
         try {
+
             let data = await get(`api/players/teams/${teamAId}/${teamBId}`);
+
+            teamAData = data.TeamAPlayers;
+            teamBData = data.TeamBPlayers;
+
+            setStartingAPlayers(teamAData.slice(0, 11));
+            setStartingBPlayers(teamBData.slice(0, 11));
+
             setTeamAPlayers(data.TeamAPlayers);
             setTeamBPlayers(data.TeamBPlayers);
-            console.log('2 teams!!! ', data);
+            console.log('MatchPair data: ', data);
             setMatches(data);
         } catch (error) {
             console.error('Error fetching matches:', error);
@@ -51,17 +47,57 @@ const MatchPair: React.FC = () => {
         }
     }, [teamAId, teamBId]);
 
+    const getFixedPosition = (index: number) => {
+        return fixedPositions[index] || { top: '0%', left: '0%' };
+    };
+
+    const getFixedNmes = (index: number) => {
+        return NamesStyles[index] || { top: '0%', left: '0%' };
+    };
+
     return (
         <>
-            <div className='field-wrap'>
-                <div className="ground-image">
-                    <img src={playground} alt="playground" />
-                    <div className="player" style={{ top: "10%", left: "20%" }}>Player 1</div>
-                    <div className="player" style={{ top: "30%", left: "40%" }}>Player 2</div>
-                    <div className="player" style={{ bottom: "15%", right: "25%" }}>Player 3</div>
+            <div className="match-pair-wrap">
+                <div className="match-info">
+                    <div className="team-names">
+                        <h1>{roundData?.ateamName} <span>vs</span> {roundData?.bteamName}</h1>
+                        <p className="match-date">{formatDate(roundData?.date)}</p>
+                    </div>
+                    <div className="match-details">
+                        <p className="match-score"><strong>{roundData?.score.split('-')[0]}{' - '}</strong> <strong>{roundData?.score.split('-')[1]}</strong></p>
+                        <p className="match-winner">Winner: <strong>{roundData?.winnerName}</strong></p>
+                    </div>
                 </div>
-                <div className="ground-image">
-                    <img src={playground} alt="playground" />
+                <div className='field-wrap'>
+                    <div className="ground-image">
+                        <img src={playground} alt="playground" />
+                        {startingAPlayers.map((player, index) => (
+                            <div key={player.id}>
+                                <div className="player-name " style={getFixedNmes(index)}>{player.fullName.split(' ')[1]}</div>
+                                <div
+                                    className="player"
+                                    style={getFixedPosition(index)}
+                                >
+                                    {player.position}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="ground-image">
+                        <img src={playground} alt="playground" />
+                        {startingBPlayers.map((player, index) => (
+                            <div key={player.id}>
+                                <div className="player-name " style={getFixedNmes(index)}>{player.fullName.split(' ')[1]}</div>
+                                <div
+                                    className="player"
+                                    style={getFixedPosition(index)}
+                                >
+                                    {player.position}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </>

@@ -78,7 +78,7 @@ function App() {
   useEffect(() => {
     fetchMatches();
     getPlayers();
-    //getRecords();
+    getRecords();
   }, []);
 
   return (

@@ -105,7 +105,10 @@ const Matches: React.FC = () => {
                     <div className="bracket-container">
                         {sixteenFinalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-                                <Link key={round.id} to={`/match-pair/${round.ateamId}/${round.bteamId}`}>
+                                <Link
+                                    key={round.id}
+                                    to={`/match-pair/${round.ateamId}/${round.bteamId}`}
+                                    state={{ roundData: round }}>
                                     <div className="match" key={round.id}>
 
                                         <div className="team">
@@ -123,7 +126,10 @@ const Matches: React.FC = () => {
                     <div className="bracket-container space-around" style={{ marginLeft: '0px' }}>
                         {forthFinalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-                                <Link key={round.id} to={`/match-pair/${round.id}`}>
+                                <Link
+                                    key={round.id}
+                                    to={`/match-pair/${round.ateamId}/${round.bteamId}`}
+                                    state={{ roundData: round }}>
                                     <div className="match" key={round.id}>
                                         <div className="team">
                                             <span >{round.ateamName}</span>
@@ -140,7 +146,10 @@ const Matches: React.FC = () => {
                     <div className="bracket-container space-around" style={{ marginLeft: '0px' }}>
                         {semiFinalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-                                <Link key={round.id} to={`/match-pair/${round.id}`}>
+                                <Link
+                                    key={round.id}
+                                    to={`/match-pair/${round.ateamId}/${round.bteamId}`}
+                                    state={{ roundData: round }}>
                                     <div className="match" key={round.id}>
                                         <div className="team">
                                             <span >{round.ateamName}</span>
@@ -157,7 +166,10 @@ const Matches: React.FC = () => {
                     <div className="bracket-container space-around">
                         {finalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-                                <Link key={round.id} to={`/match-pair/${round.id}`}>
+                                <Link
+                                    key={round.id}
+                                    to={`/match-pair/${round.ateamId}/${round.bteamId}`}
+                                    state={{ roundData: round }}>
                                     <div className="match" key={round.id}>
                                         <div className="team">
                                             <span >{round.ateamName}</span>
