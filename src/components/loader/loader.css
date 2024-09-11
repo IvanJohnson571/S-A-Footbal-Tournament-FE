@@ -8,22 +8,16 @@
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.7);
-    /* Полупрозрачен черен фон */
     z-index: 9999;
-    /* Loader-ът ще бъде винаги на преден план */
 }
 
 .loader {
     border: 8px solid #f3f3f3;
-    /* Светлосив цвят на границата */
     border-top: 8px solid #3498db;
-    /* Синя горна граница за въртенето */
     border-radius: 50%;
     width: 80px;
-    /* Увеличен размер на loader-а */
     height: 80px;
     animation: spin 1s linear infinite;
-    /* Анимация за въртене */
 }
 
 @keyframes spin {

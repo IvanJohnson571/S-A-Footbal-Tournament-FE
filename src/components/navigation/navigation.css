@@ -1,7 +1,5 @@
-/* Основен стил за навигационната лента */
 .navbar {
     background-color: #27ae60;
-    /* Зелен фон като тревата на футболно игрище */
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
@@ -16,7 +14,6 @@
     font-family: 'Arial', sans-serif;
 }
 
-/* Стилове за навигационните връзки */
 .nav-links {
     display: flex;
     gap: 20px;
@@ -37,10 +34,8 @@
 
 .nav-links a:hover {
     color: #ffdf00;
-    /* Жълт цвят при hover, като цветовете на купата */
 }
 
-/* Мобилна версия на менюто */
 .menu-toggle {
     display: none;
     cursor: pointer;
@@ -54,7 +49,6 @@
     transition: all 0.3s ease;
 }
 
-/* Отваряне и затваряне на менюто */
 .nav-links.open {
     display: flex !important;
     flex-direction: column;

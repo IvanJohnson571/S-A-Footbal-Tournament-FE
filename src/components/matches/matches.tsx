@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './matches.css';
-import { useCsvData } from '../../services/CsvDataContext';
 import { Link } from 'react-router-dom';
 import Groups from '../groups/groups';
 import BracketsOne from '../brackets-view/brackets-one';
@@ -40,7 +39,6 @@ const Matches: React.FC = () => {
         try {
             let data = await get('api/finals');
             const finalsTeamsList = data;
-            console.log('finalsTeamsList: ', finalsTeamsList);
             const eightFinals = finalsTeamsList.SixteenFinals;
             const forthFinals = finalsTeamsList.ForthFinals;
             const semiFinals = finalsTeamsList.SemiFinals;

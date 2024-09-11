@@ -1,6 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
 
-// Създаваме контекст за зареждане
 const LoadingContext = createContext<{
     isLoading: boolean;
     startLoading: () => void;
@@ -11,7 +10,6 @@ const LoadingContext = createContext<{
     stopLoading: () => { }
 });
 
-// Провайдър за LoadingContext
 export const LoadingProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [loadingCount, setLoadingCount] = useState(0);
 
@@ -32,5 +30,4 @@ export const LoadingProvider: React.FC<{ children: React.ReactNode }> = ({ child
     );
 };
 
-// Custom hook за използване на LoadingContext
 export const useLoading = () => useContext(LoadingContext);

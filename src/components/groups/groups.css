@@ -1,4 +1,3 @@
-/* Основен контейнер за груповата фаза */
 .group-stage {
     display: flex;
     flex-wrap: wrap;
@@ -6,12 +5,10 @@
     gap: 20px;
     padding: 20px;
     background-color: #2ecc71;
-    /* Зелен фон като футболно игрище */
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Всяка група */
 .group {
     background-color: #fff;
     padding: 20px;
@@ -25,15 +22,12 @@
     transform: scale(1.05);
 }
 
-/* Заглавието на всяка група */
 .group h2 {
     font-size: 1.5rem;
     margin-bottom: 10px;
     color: #27ae60;
-    /* Тъмнозелен цвят за заглавието */
 }
 
-/* Списъкът с отборите */
 .group ul {
     list-style-type: none;
     padding: 0;
@@ -46,10 +40,8 @@
     color: #333;
 }
 
-/* Стил за бутона */
 .group button {
     background-color: #ffdf00;
-    /* Жълт бутон */
     color: #fff;
     font-size: 1.1rem;
     font-weight: bold;
@@ -64,7 +56,6 @@
 
 .group button:hover {
     background-color: #f39c12;
-    /* По-тъмен жълт при hover */
     transform: scale(1.05);
 }
 
@@ -72,7 +63,6 @@
     transform: scale(0.95);
 }
 
-/* Респонсивност */
 @media (max-width: 768px) {
     .group-stage {
         flex-direction: column;

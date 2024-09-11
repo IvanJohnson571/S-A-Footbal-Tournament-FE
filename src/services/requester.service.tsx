@@ -13,8 +13,6 @@ export const fetchMultipleCsvFiles = async (filePaths: string[]): Promise<{ [key
             let name: any = path.split('/');
             name = name[3].split('.');
             name = name[0];
-            //console.log('name: ', name);
-
 
             return { [name]: parsedData };
 
@@ -35,15 +33,46 @@ export const fetchMultipleCsvFiles = async (filePaths: string[]): Promise<{ [key
 };
 
 export const get = async (endpoint: string) => {
+
     try {
-        const response = await fetch(REACT_APP_API_URL + endpoint); // Извикваме API с динамичен маршрут
+
+        const response = await fetch(REACT_APP_API_URL + endpoint);
+
         if (!response.ok) {
             throw new Error('Network response was not ok');
+
         }
+
         const data = await response.json();
+
         return data;
+
+    } catch (error) {
+
+        console.error('Error fetching data:', error);
+
+        throw error;
+
+    }
+
+};
+
+export const postPlusData = async (entryData: any, endpoint: string) => {
+    try {
+        const response = await fetch(REACT_APP_API_URL + endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(entryData),
+        });
+
+        const data = await response.json();
+
+        return data;
+
     } catch (error) {
         console.error('Error fetching data:', error);
-        throw error;
+
     }
 };

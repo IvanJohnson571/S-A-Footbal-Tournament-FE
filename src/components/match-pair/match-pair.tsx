@@ -17,7 +17,6 @@ const MatchPair: React.FC = () => {
     const [matches, setMatches] = useState([]);
     const location = useLocation();
     const { roundData } = location.state;
-    console.log('roundData: ', roundData);
     let teamAData: any[] = [];
     let teamBData: any[] = [];
 
@@ -25,17 +24,14 @@ const MatchPair: React.FC = () => {
         try {
 
             let data = await get(`api/players/teams/${teamAId}/${teamBId}`);
-
             teamAData = data.TeamAPlayers;
             teamBData = data.TeamBPlayers;
-
             setStartingAPlayers(teamAData.slice(0, 11));
             setStartingBPlayers(teamBData.slice(0, 11));
-
             setTeamAPlayers(data.TeamAPlayers);
             setTeamBPlayers(data.TeamBPlayers);
-            console.log('MatchPair data: ', data);
             setMatches(data);
+
         } catch (error) {
             console.error('Error fetching matches:', error);
         }
@@ -60,12 +56,14 @@ const MatchPair: React.FC = () => {
             <div className="match-pair-wrap">
                 <div className="match-info">
                     <div className="team-names">
-                        <h1>{roundData?.ateamName} <span>vs</span> {roundData?.bteamName}</h1>
+                        <h1>{roundData.ateamName ? roundData?.ateamName : roundData.aTeamName} <span>vs</span> {roundData.bteamName ? roundData?.bteamName : roundData.bTeamName}</h1>
                         <p className="match-date">{formatDate(roundData?.date)}</p>
                     </div>
                     <div className="match-details">
-                        <p className="match-score"><strong>{roundData?.score.split('-')[0]}{' - '}</strong> <strong>{roundData?.score.split('-')[1]}</strong></p>
-                        <p className="match-winner">Winner: <strong>{roundData?.winnerName}</strong></p>
+                        <p className="match-score">
+                            <strong>{roundData.score ? roundData?.score.split('-')[0] : roundData?.result.split('-')[0]}{' - '}</strong>
+                            <strong>{roundData.score ? roundData?.score.split('-')[1] : roundData?.result.split('-')[1]}</strong></p>
+                        <p className="match-winner">Winner: <strong>{roundData.winnerName ? roundData?.winnerName : roundData.winnerName}</strong></p>
                     </div>
                 </div>
                 <div className='field-wrap'>
@@ -83,7 +81,6 @@ const MatchPair: React.FC = () => {
                             </div>
                         ))}
                     </div>
-
                     <div className="ground-image">
                         <img src={playground} alt="playground" />
                         {startingBPlayers.map((player, index) => (
