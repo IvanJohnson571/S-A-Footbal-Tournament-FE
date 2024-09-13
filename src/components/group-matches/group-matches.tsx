@@ -47,13 +47,13 @@ function GroupMatches() {
                             <div key={match.id} className="match-card">
                                 <div className="match-info">
                                     <div className="teams">
-                                        <div className="team team-a">
+                                        <div className="team team-left">
                                             <span>{match.aTeamName}</span>
                                         </div>
                                         <div className="score">
                                             <span>{match.result}</span>
                                         </div>
-                                        <div className="team team-b">
+                                        <div className="team team-right">
                                             <span>{match.bTeamName}</span>
                                         </div>
                                     </div>

@@ -59,8 +59,9 @@
     .team {
         display: flex;
         justify-content: space-between;
-        /* width: 150px; */
-        padding: 5px 10px;
+        width: 85%;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     .connector {
@@ -172,7 +173,8 @@ button:active {
 
 .wrapper {
     display: flex;
-    background-color: #2ecc71;
+    padding-right: 30px;
+    /* background-color: #2ecc71; */
 }
 
 .bracket-container {
@@ -204,6 +206,7 @@ button:active {
     width: 250px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
+    border: 1px solid lightgray;
 }
 
 .team {
@@ -221,11 +224,25 @@ button:active {
 .winner-image {
     width: 50px;
     height: 50px;
-    margin-top: 10px;
+    bottom: 15px;
+    position: relative;
 }
 
 .matches-wrap {
     display: flex;
     flex-wrap: wrap;
     overflow-x: auto;
+}
+
+.winner-team {
+    width: min-content;
+    height: 35px;
+    align-items: center;
+}
+
+.finalist {
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 101px;
+    height: 40px;
 }

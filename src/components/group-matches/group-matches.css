@@ -55,6 +55,7 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    color: white;
 }
 
 .winner {
@@ -105,4 +106,9 @@
         width: 100%;
         max-width: 400px;
     }
+}
+
+.team-left,
+.team-right {
+    color: white;
 }

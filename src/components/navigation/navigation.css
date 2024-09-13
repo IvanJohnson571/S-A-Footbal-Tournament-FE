@@ -1,10 +1,13 @@
 .navbar {
-    background-color: #27ae60;
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
+    background: sc;
+    background-image: url('../../assets/blue-thin.avif');
+    background-size: cover;
+    background-position: center;
 }
 
 .navbar-logo {
@@ -78,4 +81,9 @@
     .nav-links.open {
         display: flex;
     }
+}
+
+.logo-image {
+    width: 125px;
+    height: 50px;
 }

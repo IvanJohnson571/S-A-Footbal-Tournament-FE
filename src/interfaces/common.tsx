@@ -22,3 +22,22 @@ export interface Player {
     position: string;
     teamId: number;
 }
+
+export interface Match {
+    team1: string;
+    team2: string;
+    score1: number;
+    score2: number;
+}
+
+export interface BracketProps {
+    matches: Match[][];
+}
+
+export interface TeamModalProps {
+    teamId: string | null;
+    startingPlayers: { id: number; fullName: string; position: string }[];
+    teamName: string | null;
+
+    onClose: () => void;
+}

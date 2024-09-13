@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Navigation.css';
 import { Link } from 'react-router-dom';
+import logo from '../../assets/UEFA-Euro-2024-Logo.png';
+import thinImage from '../../assets/blue-thin.avif';
 
 export const Navigation: React.FC = () => {
 
@@ -12,12 +14,14 @@ export const Navigation: React.FC = () => {
 
     return (
         <nav className="navbar">
-            <div className="navbar-logo">European Football Championship</div>
+            <div className="navbar-logo">
+                <img src="https://img.uefa.com/imgml/uefacom/euro2024/rebrand/newlogo_onDark.png" alt="logo" className="logo-image" />
+            </div>
             <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
-                <li><a href="/">TEAMS</a></li>
-                <li><Link to="/">MATCHES</Link></li>
-                <li><Link to="/records">RECORDS</Link></li>
-                <li><a href="/contact">PLAYERS</a></li>
+
+                <li><Link to="/groups">GROUPS</Link></li>
+                <li><Link to="/">FINALES</Link></li>
+
             </ul>
             <div className="menu-toggle" onClick={toggleMenu}>
                 <div className="hamburger"></div>

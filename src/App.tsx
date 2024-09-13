@@ -1,8 +1,7 @@
 import { LoadingProvider, useLoading } from './components/loader/LoadingContext';
 import Loader from './components/loader/loader';
 import { useState, useEffect, createContext, useContext } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import uefaLogo from './assets/UEFA-Euro-2024-Logo.png'
 import './App.css'
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -14,6 +13,8 @@ import Groups from './components/groups/groups';
 import GroupMatches from './components/group-matches/group-matches';
 import { get } from './services/requester.service';
 import MatchPair from './components/match-pair/match-pair';
+import Footer from './components/Footer/footer';
+
 
 function App() {
 
@@ -79,13 +80,14 @@ function App() {
   return (
     <>
       <LoadingProvider>
-        <AppContent />
+        <div className="app-container">
+          <AppContent />
+          <Footer />
+        </div>
       </LoadingProvider>
     </>
   )
 }
-
-import { MoonLoader } from 'react-spinners';
 
 const AppContent: React.FC = () => {
 
@@ -93,7 +95,7 @@ const AppContent: React.FC = () => {
 
   return (
     <>
-      {isLoading && <MoonLoader />}
+      {isLoading && <Loader />}
       <Navigation />
       <Routes>
         <Route path="/" element={<Matches />} />

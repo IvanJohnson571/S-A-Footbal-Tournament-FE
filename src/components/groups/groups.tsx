@@ -24,24 +24,30 @@ const Groups: React.FC = () => {
         <>
             <div className="group-stage">
                 {finalGroupsList.map((group) => (
-                    <div key={group.groupName} className="group">
-                        <h2>Group {group.groupName}</h2>
-                        <ul>
-                            {group.teams.map((team: any) => (
-                                <li key={team.id}>
-                                    {team.name}
-                                </li>
-                            ))}
-                        </ul>
-                        <Link
-                            to={`/group-matches/${group.groupName}`}
-                            state={{ groupName: group.groupName, teams: group.teams }}
-                        >
-                            <button>View matches</button>
-                        </Link>
+                    <div key={group.groupName}>
+                        <div className='group-header'>
+                            <span className='group-name'>Group {group.groupName}</span>
+                        </div>
+                        <div className="group">
+                            <ul>
+                                {group.teams.map((team: any) => (
+                                    <li key={team.id}>
+                                        {team.name}
+                                    </li>
+                                ))}
+                            </ul>
+                            <Link
+                                to={`/group-matches/${group.groupName}`}
+                                state={{ groupName: group.groupName, teams: group.teams }}
+                            >
+                                <button>View</button>
+                            </Link>
+                        </div>
                     </div>
+
                 ))}
             </div>
+            <div className='group-footer'></div>
         </>
     );
 };

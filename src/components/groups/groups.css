@@ -4,23 +4,43 @@
     justify-content: space-around;
     gap: 20px;
     padding: 20px;
-    background-color: #2ecc71;
-    border-radius: 12px;
+    background-color: #0138dc;
+    background-image: url('../../assets/mdLive-bg_L.avif');
+    background-size: cover;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding-bottom: 160px;
+    padding-bottom: 220px;
+
 }
 
+/* .group-footer {
+    background-image: url('../../assets/footer-flags.webp');
+    background-size: cover;
+    height: 150px;
+    background-size: contain;
+} */
+
 .group {
-    background-color: #fff;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #0138dc;
+
     border-radius: 10px;
     width: 250px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    border: 1px solid white;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
-.group:hover {
-    transform: scale(1.05);
+/* .group:hover {
+    transform: scale(1.03);
 }
+
+.group-header:hover {
+    transform: scale(1.03);
+} */
 
 .group h2 {
     font-size: 1.5rem;
@@ -31,17 +51,21 @@
 .group ul {
     list-style-type: none;
     padding: 0;
+    margin: 0px;
 }
 
 .group li {
     padding: 5px 0;
     font-size: 1.2rem;
     font-weight: bold;
-    color: #333;
+    color: white;
+    text-transform: uppercase;
+    border-bottom: 1px solid white;
+    padding-left: 5px;
 }
 
 .group button {
-    background-color: #ffdf00;
+    background-color: transparent;
     color: #fff;
     font-size: 1.1rem;
     font-weight: bold;
@@ -50,17 +74,17 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     width: 100%;
 }
 
 .group button:hover {
-    background-color: #f39c12;
-    transform: scale(1.05);
+    /* background-color: #f39c12; */
+    transform: scale(1.00);
 }
 
 .group button:active {
-    transform: scale(0.95);
+    /* transform: scale(0.95); */
 }
 
 @media (max-width: 768px) {
@@ -70,7 +94,22 @@
     }
 
     .group {
-        width: 100%;
+        /* width: 100%; */
         max-width: 350px;
     }
+}
+
+.group-header {
+    height: 30px;
+    width: 80px;
+    background-color: #ffcc00;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    color: darkblue;
+    margin-bottom: 0.3px;
+}
+
+.group-name {
+    font-weight: 700;
 }

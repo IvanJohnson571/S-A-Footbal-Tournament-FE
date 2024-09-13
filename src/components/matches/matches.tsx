@@ -7,18 +7,9 @@ import BracketsTwo from '../brackets-view/brackets-two';
 import BracketsThree from '../brackets-view/brackets-three';
 import trophy from '../../assets/trophy.png'
 import { get } from '../../services/requester.service';
-import { log } from 'console';
+import Loader from '../loader/loader';
 
-interface Match {
-    team1: string;
-    team2: string;
-    score1: number;
-    score2: number;
-}
 
-interface BracketProps {
-    matches: Match[][];
-}
 
 const Matches: React.FC = () => {
 
@@ -74,7 +65,7 @@ const Matches: React.FC = () => {
     }, []);
 
     if (isLoading) {
-        return <div>Loading finals data...</div>;
+        return <Loader />
     }
 
     const handleShrink = () => {
@@ -84,18 +75,6 @@ const Matches: React.FC = () => {
 
     return (
         <><div className="matches-wrap">
-            <div className="buttonsWrapper group">
-                <div>
-                    <button onClick={() => toggleView(false)}>
-                        View in groups
-                    </button>
-                </div>
-                <div>
-                    <button onClick={() => toggleView(true)}>
-                        View in finales
-                    </button>
-                </div>
-            </div>
             {!isViewA ? <div>
                 <Groups />
             </div> :
@@ -110,10 +89,12 @@ const Matches: React.FC = () => {
                                     <div className="match" key={round.id}>
 
                                         <div className="team">
-                                            <span >{round.ateamName}</span>
+                                            <div >{round.ateamName}</div>
+                                            <div>{round.score.split('-')[0]}</div>
                                         </div>
                                         <div className="team">
-                                            <span >{round.bteamName}</span>
+                                            <div >{round.bteamName}</div>
+                                            <div>{round.score.split('-')[1]}</div>
                                         </div>
                                     </div>
                                 </Link>
@@ -130,10 +111,12 @@ const Matches: React.FC = () => {
                                     state={{ roundData: round }}>
                                     <div className="match" key={round.id}>
                                         <div className="team">
-                                            <span >{round.ateamName}</span>
+                                            <div >{round.ateamName}</div>
+                                            <div>{round.score.split('-')[0]}</div>
                                         </div>
                                         <div className="team">
-                                            <span >{round.bteamName}</span>
+                                            <div >{round.bteamName}</div>
+                                            <div>{round.score.split('-')[1]}</div>
                                         </div>
                                     </div>
                                 </Link>
@@ -150,10 +133,12 @@ const Matches: React.FC = () => {
                                     state={{ roundData: round }}>
                                     <div className="match" key={round.id}>
                                         <div className="team">
-                                            <span >{round.ateamName}</span>
+                                            <div >{round.ateamName}</div>
+                                            <div>{round.score.split('-')[0]}</div>
                                         </div>
                                         <div className="team">
-                                            <span >{round.bteamName}</span>
+                                            <div >{round.bteamName}</div>
+                                            <div>{round.score.split('-')[1]}</div>
                                         </div>
                                     </div>
                                 </Link>
@@ -170,10 +155,12 @@ const Matches: React.FC = () => {
                                     state={{ roundData: round }}>
                                     <div className="match" key={round.id}>
                                         <div className="team">
-                                            <span >{round.ateamName}</span>
+                                            <div >{round.ateamName}</div>
+                                            <div>{round.score.split('-')[0]}</div>
                                         </div>
                                         <div className="team">
-                                            <span >{round.bteamName}</span>
+                                            <div >{round.bteamName}</div>
+                                            <div>{round.score.split('-')[1]}</div>
                                         </div>
                                     </div>
                                 </Link>
@@ -183,8 +170,9 @@ const Matches: React.FC = () => {
                     <div className="bracket-container space-around">
                         {finalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-                                <div className="match" key={round.id} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                                    <img src={trophy} alt="Winner" className="winner-image" />
+                                <img src={trophy} alt="Winner" className="winner-image" />
+                                <div className="match finalist" key={round.id} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+
                                     <div className="team">
                                         <span>{round.winnerName}</span>
                                     </div>
