@@ -167,16 +167,17 @@ const Matches: React.FC = () => {
                             </div>
                         ))}
                     </div>
-                    <div className="bracket-container space-around">
+                    <div className="bracket-container space-around" style={{ marginLeft: '' }}>
                         {finalsList.map((round, roundIndex) => (
                             <div className="round" key={roundIndex}>
-                                <img src={trophy} alt="Winner" className="winner-image" />
+
                                 <div className="match finalist" key={round.id} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
 
-                                    <div className="team">
+                                    <div className="team" style={{ justifyContent: 'center' }}>
                                         <span>{round.winnerName}</span>
                                     </div>
                                 </div>
+                                <img src={trophy} alt="Winner" className="winner-image" />
                             </div>
                         ))}
                     </div>

@@ -20,7 +20,7 @@ export const Navigation: React.FC = () => {
             <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
 
                 <li><Link to="/groups">GROUPS</Link></li>
-                <li><Link to="/">FINALES</Link></li>
+                <li><Link to="/">FINALS</Link></li>
 
             </ul>
             <div className="menu-toggle" onClick={toggleMenu}>

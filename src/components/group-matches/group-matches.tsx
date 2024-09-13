@@ -47,23 +47,23 @@ function GroupMatches() {
                             <div key={match.id} className="match-card">
                                 <div className="match-info">
                                     <div className="teams">
-                                        <div className="team team-left">
+                                        <div className="team team-left width-33 flex-right">
                                             <span>{match.aTeamName}</span>
                                         </div>
-                                        <div className="score">
+                                        <div className="score width-33">
                                             <span>{match.result}</span>
                                         </div>
-                                        <div className="team team-right">
+                                        <div className="team team-right width-33 flex-left">
                                             <span>{match.bTeamName}</span>
                                         </div>
                                     </div>
                                     <div className="match-meta">
                                         <span className="date">{formatDate(match?.date)}</span>
-                                        {isDraw ? (
+                                        {/* {isDraw ? (
                                             <span className="draw">Draw</span>
                                         ) : (
                                             <span className="winner">Winner: {match.winnerName}</span>
-                                        )}
+                                        )} */}
                                     </div>
                                 </div>
                             </div>

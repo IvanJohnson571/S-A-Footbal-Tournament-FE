@@ -4,12 +4,12 @@
     gap: 20px;
     justify-content: center;
     padding: 20px;
-    background-color: #2ecc71;
+    /* background-color: #2ecc71; */
 }
 
 .match-card {
     background-color: #f0f0f0;
-    border: 2px solid #27ae60;
+    border: 2px solid lightgrey;
     border-radius: 12px;
     width: 300px;
     padding: 20px;
@@ -26,6 +26,7 @@
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    background-color: #024aec !important;
 }
 
 .teams {
@@ -43,10 +44,12 @@
 .score {
     font-size: 1.6rem;
     font-weight: bold;
-    background-color: #27ae60;
+
     color: white;
     padding: 5px 10px;
     border-radius: 8px;
+    display: flex;
+    justify-content: center;
 }
 
 .match-meta {
@@ -73,7 +76,7 @@
 }
 
 .qualified-teams {
-    background-color: #2ecc71;
+    /* background-color: #2ecc71; */
     margin-top: 20px;
     padding: 20px;
     border-radius: 12px;
@@ -83,7 +86,8 @@
 .qualified-teams h2 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-    color: white;
+    color: #024aec !important;
+    text-transform: uppercase;
 }
 
 .qualified-teams ul {
@@ -94,7 +98,7 @@
 .qualified-teams li {
     font-size: 1.3rem;
     padding: 10px;
-    background-color: #27ae60;
+    background-color: #123dd9;
     color: white;
     margin-bottom: 10px;
     border-radius: 8px;
@@ -111,4 +115,18 @@
 .team-left,
 .team-right {
     color: white;
+}
+
+.width-33 {
+    width: 33.33%;
+}
+
+.flex-right {
+    justify-content: flex-end;
+    display: flex;
+}
+
+.flex-left {
+    justify-content: flex-start;
+    display: flex;
 }
