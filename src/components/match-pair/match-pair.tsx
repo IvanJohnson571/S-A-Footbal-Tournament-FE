@@ -116,12 +116,12 @@ const MatchPair: React.FC = () => {
                         <div className="score-main">
                             <h1 className="width-33 team-one">{roundData.ateamName ? roundData?.ateamName : roundData.aTeamName}</h1>
                             <div className="match-details width-33">
-                                <p className="match-score">
+                                <div className="match-score">
                                     <div className="strong">{roundData.score ? roundData?.score.split('-')[0] : roundData?.result.split('-')[0]}
                                     </div>
                                     <span>-</span>
                                     <div className="strong">{roundData.score ? roundData?.score.split('-')[1] : roundData?.result.split('-')[1]}</div>
-                                </p>
+                                </div>
                             </div>
                             <h1 className="width-33">{roundData.bteamName ? roundData?.bteamName : roundData.bTeamName}</h1>
                         </div>
@@ -143,7 +143,7 @@ const MatchPair: React.FC = () => {
                         <img src={playground2} alt="playground" />
                         {startingAPlayers.map((player, index) => (
                             <div key={player.id}>
-                                <div className="player-name " style={getFixedNmes(index)}>{player.fullName.split(' ')[1]}</div>
+                                <div className="player-name " style={getFixedNmes(index)}>{player.fullName.split(' ').length == 2 ? player.fullName.split(' ')[1] : player.fullName.split(' ')[1] + ' ' + player.fullName.split(' ')[2]}</div>
                                 <div
                                     className="player"
                                     style={getFixedPosition(index)}
@@ -169,7 +169,7 @@ const MatchPair: React.FC = () => {
                         <img src={playground2} alt="playground" />
                         {startingBPlayers.map((player, index) => (
                             <div key={player.id}>
-                                <div className="player-name " style={getFixedNmes(index)}>{player.fullName.split(' ')[1]}</div>
+                                <div className="player-name " style={getFixedNmes(index)}>{player.fullName.split(' ').length == 2 ? player.fullName.split(' ')[1] : player.fullName.split(' ')[1] + ' ' + player.fullName.split(' ')[2]}</div>
                                 <div
                                     className="player"
                                     style={getFixedPosition(index)}

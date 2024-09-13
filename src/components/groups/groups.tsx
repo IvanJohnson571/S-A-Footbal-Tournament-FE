@@ -32,7 +32,7 @@ const Groups: React.FC = () => {
         <>
             <div className="group-stage">
                 {finalGroupsList.map((group) => (
-                    <div key={group.groupName} style={{ paddingTop: '15px' }}>
+                    <div key={group.groupName} style={{ paddingTop: '15px', display: 'inline-block' }}>
                         <div className='group-header'>
                             <span className='group-name'>Group {group.groupName}</span>
                         </div>
