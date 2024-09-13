@@ -103,6 +103,24 @@ const MatchPair: React.FC = () => {
         return NamesStyles[index] || { top: '0%', left: '0%' };
     };
 
+    const getPlayerName = (fullName: string): string => {
+
+        if (fullName != undefined && fullName.split(' ').length == 2) {
+            return fullName.split(' ')[1];
+
+        } else if (fullName != undefined && fullName.split(' ').length == 3) {
+            return fullName.split(' ')[1] + ' ' + fullName.split(' ')[2];
+
+        } else if (!fullName) {
+            return fullName;
+
+        } else {
+            return fullName;
+
+        }
+
+    }
+
     if (isLoading) {
         return <Loader />
     }
@@ -143,7 +161,7 @@ const MatchPair: React.FC = () => {
                         <img src={playground2} alt="playground" />
                         {startingAPlayers.map((player, index) => (
                             <div key={player.id}>
-                                <div className="player-name " style={getFixedNmes(index)}>{player.fullName.split(' ').length == 2 ? player.fullName.split(' ')[1] : player.fullName.split(' ')[1] + ' ' + player.fullName.split(' ')[2]}</div>
+                                <div className="player-name " style={getFixedNmes(index)}>{getPlayerName(player.fullName)}</div>
                                 <div
                                     className="player"
                                     style={getFixedPosition(index)}
@@ -169,7 +187,7 @@ const MatchPair: React.FC = () => {
                         <img src={playground2} alt="playground" />
                         {startingBPlayers.map((player, index) => (
                             <div key={player.id}>
-                                <div className="player-name " style={getFixedNmes(index)}>{player.fullName.split(' ').length == 2 ? player.fullName.split(' ')[1] : player.fullName.split(' ')[1] + ' ' + player.fullName.split(' ')[2]}</div>
+                                <div className="player-name " style={getFixedNmes(index)}>{getPlayerName(player.fullName)}</div>
                                 <div
                                     className="player"
                                     style={getFixedPosition(index)}
