@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import './Navigation.css';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/UEFA-Euro-2024-Logo.png';
-import thinImage from '../../assets/blue-thin.avif';
 
 export const Navigation: React.FC = () => {
 

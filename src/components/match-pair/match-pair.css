@@ -67,7 +67,6 @@
     padding: 5px;
     border-radius: 50%;
     text-align: center;
-    /* transform: rotate(-90deg); */
     transform-origin: center;
     transform: translate(-50%, -50%);
     color: grey;
@@ -79,7 +78,6 @@
     padding: 5px;
     border-radius: 50%;
     text-align: center;
-    /* transform: rotate(-90deg); */
     transform-origin: center;
     font-weight: 600;
     color: white;
@@ -138,8 +136,6 @@
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
-    /* margin-left: 20px;
-    margin-right: 20px; */
 }
 
 .match-score,

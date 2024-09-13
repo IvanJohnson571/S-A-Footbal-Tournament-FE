@@ -10,6 +10,7 @@ import { formatDate } from '../../services/dateFormats';
 import TeamModal from '../modals/team/team';
 
 const MatchPair: React.FC = () => {
+
     const { teamAId, teamBId } = useParams<{ teamAId: string; teamBId: string }>();
     const [teamAPlayers, setTeamAPlayers] = useState<Player[]>([]);
     const [teamBPlayers, setTeamBPlayers] = useState<Player[]>([]);
@@ -24,12 +25,8 @@ const MatchPair: React.FC = () => {
     const [currentTeamName, setCurrentTeamName] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
-
     const location = useLocation();
     const { roundData } = location.state;
-    console.log(roundData);
-
-
     let teamAData: any[] = [];
     let teamBData: any[] = [];
 
@@ -138,7 +135,7 @@ const MatchPair: React.FC = () => {
                                 <div className="overflow-hidden">Coach: {coachA}</div>
                             </div>
                             <div className="view-team-button-wrap">
-                                <button className="team-button" onClick={() => openModal(teamAId!, roundData.ateamName ? roundData?.ateamName : roundData.aTeamName)} className="team-button">
+                                <button className="team-button" onClick={() => openModal(teamAId!, roundData.ateamName ? roundData?.ateamName : roundData.aTeamName)}>
                                     <span>View Team</span>
                                 </button>
                             </div>

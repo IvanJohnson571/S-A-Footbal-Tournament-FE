@@ -10,21 +10,20 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding-bottom: 160px;
     padding-bottom: 220px;
+    /* --------------------- */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #f1f1f1;
 
 }
-
-/* .group-footer {
-    background-image: url('../../assets/footer-flags.webp');
-    background-size: cover;
-    height: 150px;
-    background-size: contain;
-} */
 
 .group {
     display: flex;
     flex-direction: column;
     background-color: #0138dc;
-
     border-radius: 10px;
     width: 250px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -33,14 +32,6 @@
     border-top-left-radius: 0px;
     border-bottom-right-radius: 0px;
 }
-
-/* .group:hover {
-    transform: scale(1.03);
-}
-
-.group-header:hover {
-    transform: scale(1.03);
-} */
 
 .group h2 {
     font-size: 1.5rem;
@@ -74,27 +65,22 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    /* margin-top: 10px; */
     width: 100%;
 }
 
 .group button:hover {
-    /* background-color: #f39c12; */
     transform: scale(1.00);
-}
-
-.group button:active {
-    /* transform: scale(0.95); */
 }
 
 @media (max-width: 768px) {
     .group-stage {
         flex-direction: column;
         align-items: center;
+        display: block;
+        height: 147vh;
     }
 
     .group {
-        /* width: 100%; */
         max-width: 350px;
     }
 }

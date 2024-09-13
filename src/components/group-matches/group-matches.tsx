@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { postPlusData } from '../../services/requester.service';
 import { formatDate } from '../../services/dateFormats';
+import Loader from '../loader/loader';
 
 function GroupMatches() {
 
@@ -10,6 +11,7 @@ function GroupMatches() {
     const state = location.state as { groupName?: string; teams?: { id: number; name: string }[] };
     const [matchesCurrentGroup, setFinalGroupsList] = useState<any[]>([]);
     const [topTwoTeams, seTopTwoTeams] = useState<any[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const getRecords = async () => {
 
@@ -22,6 +24,8 @@ function GroupMatches() {
             seTopTwoTeams(data.topTwoTeams);
         } catch (error) {
             console.error('Error fetching groups:', error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -32,6 +36,10 @@ function GroupMatches() {
         }
 
     }, []);
+
+    if (isLoading) {
+        return <Loader />
+    }
 
     return (
         <>
@@ -59,11 +67,6 @@ function GroupMatches() {
                                     </div>
                                     <div className="match-meta">
                                         <span className="date">{formatDate(match?.date)}</span>
-                                        {/* {isDraw ? (
-                                            <span className="draw">Draw</span>
-                                        ) : (
-                                            <span className="winner">Winner: {match.winnerName}</span>
-                                        )} */}
                                     </div>
                                 </div>
                             </div>

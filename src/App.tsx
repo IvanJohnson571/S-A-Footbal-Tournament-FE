@@ -8,12 +8,12 @@ import ReactDOM from 'react-dom';
 import Navigation from './components/navigation/navigation';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Matches from './components/matches/matches';
-import Records from './components/records/records';
 import Groups from './components/groups/groups';
 import GroupMatches from './components/group-matches/group-matches';
 import { get } from './services/requester.service';
 import MatchPair from './components/match-pair/match-pair';
 import Footer from './components/Footer/footer';
+import PageNotFound from './components/page-not-found/pageNotFound';
 
 
 function App() {
@@ -28,8 +28,6 @@ function App() {
     const loadTeams = async () => {
       try {
         let data = await get('api/teams');
-        //console.log('TEAMS!!! ', data);
-
         setTeams(data);
       } catch (err) {
         setError('Failed to fetch teams');
@@ -44,7 +42,6 @@ function App() {
   const fetchMatches = async () => {
     try {
       let data = await get('api/matches');
-      //console.log('MATCHES!!! ', data);
       setMatches(data);
     } catch (error) {
       console.error('Error fetching matches:', error);
@@ -54,7 +51,6 @@ function App() {
   const getPlayers = async () => {
     try {
       let data = await get('api/players');
-      //console.log('PLAYERS!!! ', data);
       setMatches(data);
     } catch (error) {
       console.error('Error fetching matches:', error);
@@ -64,7 +60,6 @@ function App() {
   const getRecords = async () => {
     try {
       let data = await get('api/records');
-      //console.log('RECORDS!!! ', data);
       setMatches(data);
     } catch (error) {
       console.error('Error fetching matches:', error);
@@ -72,6 +67,7 @@ function App() {
   };
 
   useEffect(() => {
+    //Load Data from the DB
     fetchMatches();
     getPlayers();
     getRecords();
@@ -99,10 +95,10 @@ const AppContent: React.FC = () => {
       <Navigation />
       <Routes>
         <Route path="/" element={<Matches />} />
-        <Route path="/records" element={<Records />} />
         <Route path="/groups" element={<Groups />} />
         <Route path="/group-matches/:groupName" element={<GroupMatches />} />
         <Route path="/match-pair/:teamAId/:teamBId" element={<MatchPair />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
   );

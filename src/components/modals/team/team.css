@@ -10,7 +10,6 @@
     align-items: center;
     z-index: 999;
     animation: fadeIn 0.3s forwards;
-    /* Плавно отваряне */
 }
 
 .modal-content {
@@ -22,7 +21,6 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: relative;
     animation: slideUp 0.3s forwards;
-    /* Плавно плъзгане нагоре */
 }
 
 .modal-header {

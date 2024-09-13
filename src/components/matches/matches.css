@@ -39,7 +39,6 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         margin-bottom: 30px;
         position: relative;
-        /* margin-right: 20px; */
     }
 
     .match-two {
@@ -175,13 +174,11 @@ button:active {
 .wrapper {
     display: flex;
     padding-right: 30px;
-    /* background-color: #2ecc71; */
 }
 
 .bracket-container {
     display: flex;
     flex-direction: column;
-    /* gap: 40px; */
     position: relative;
 }
 

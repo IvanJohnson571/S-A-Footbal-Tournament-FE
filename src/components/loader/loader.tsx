@@ -3,7 +3,6 @@ import './loader.css';
 
 const Loader: React.FC = () => {
 
-
     return (
         <>
             <div className='loader-wrapper'>
@@ -14,9 +13,8 @@ const Loader: React.FC = () => {
                 </div>
             </div>
         </>
-
-
     )
+
 }
 
 export default Loader;

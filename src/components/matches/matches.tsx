@@ -9,8 +9,6 @@ import trophy from '../../assets/trophy.png'
 import { get } from '../../services/requester.service';
 import Loader from '../loader/loader';
 
-
-
 const Matches: React.FC = () => {
 
     const [isViewA, setIsViewA] = useState(true);
